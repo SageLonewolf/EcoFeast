@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(authRouter);
 app.use(adminRouter);
+app.set('view engine', 'ejs');
 
 //Connection
 mongoose.connect(DB).then(() => {

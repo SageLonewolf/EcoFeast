@@ -43,11 +43,12 @@ adminRouter.post("/admin/get-meals", async (req, res) => {
 });
 
 // Delete the meal
-adminRouter.post("/admin/delete-meal", admin, async (req, res) => {
+adminRouter.post("/admin/delete-meal", async (req, res) => {
   try {
     const { id } = req.body;
     let meal = await Meal.findByIdAndDelete(id);
     res.json(meal);
+    console.log("deletes");
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

@@ -49,9 +49,18 @@ authRouter.post("/api/signup", async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ msg: "Incorrect password." });
       }
-  
+      ///const path = "C:\Users\sanja\.vscode\.vscode\Web\Ecofeast.html";
       const token = jwt.sign({ id: user._id }, "passwordKey");
-      res.json({ token, ...user._doc });
+      res.cookie("token", token);
+      //res.sendFile('Ecofeast.html', { root: path.join(__dirname, '../public') });
+      const path = require('path');
+
+// ...
+
+const rootPath = path.resolve(__dirname, 'C:\\Users\\sanja\\.vscode\\.vscode\\Web');
+const filePath = path.join(rootPath, 'Ecofeast.html');
+res.sendFile(filePath);
+    
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
